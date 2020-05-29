@@ -1,14 +1,14 @@
 import React, { FC, ChangeEvent } from "react";
-import { Paper, makeStyles, Container, Grid } from "@material-ui/core";
+import { Paper, makeStyles, Grid, Tabs, Tab } from "@material-ui/core";
 import Editor from "../../components/Editor";
 import { RootState } from "../../app/rootReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { setSourceContent } from "./transcoderSlice";
+import EncodingTabs from "../../components/EncodingTabs";
 
 const useStyles = makeStyles({
   container: {
     minHeight: 450,
-    height: "100%",
     paddingBottom: "2rem",
   },
   editorWrapper: {
@@ -33,12 +33,17 @@ const Transcoder: FC = () => {
     <Grid container spacing={1} className={styles.container}>
       <Grid item sm={6}>
         <Paper className={styles.editorWrapper} elevation={4}>
-          <Editor value={sourceContent} onChange={handleSourceContentChange} />
+          <Editor
+            value={sourceContent}
+            onChange={handleSourceContentChange}
+            placeholder="Your input here..."
+            autoFocus
+          />
         </Paper>
       </Grid>
       <Grid item sm={6}>
         <Paper className={styles.editorWrapper} elevation={4}>
-          <Editor value={sourceContent} onChange={handleSourceContentChange} />
+          <Editor value={sourceContent} onChange={handleSourceContentChange} placeholder="Result shows here" disabled />
         </Paper>
       </Grid>
     </Grid>

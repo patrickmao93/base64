@@ -1,10 +1,6 @@
-import React, { FC, ChangeEventHandler } from "react";
-import { makeStyles, InputBase, fade, colors } from "@material-ui/core";
-
-interface IProps {
-  value: string;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
-}
+import React, { FC, ChangeEventHandler, useState } from "react";
+import { makeStyles, InputBase, fade, colors, InputBaseProps } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => {
   const bgBase = theme.palette.type === "dark" ? "#fff" : "#000";
@@ -16,24 +12,25 @@ const useStyles = makeStyles((theme) => {
       borderRadius: 3,
       border: "1px solid transparent",
       padding: "1rem",
-      "&::focus": {
-        borderColor: colors.blue[500],
-      },
+    },
+    focused: {
+      border: `1px solid ${fade(colors.blue[500], 0.6)}`,
     },
   };
 });
 
-const Editor: FC<IProps> = (props) => {
-  const { value, onChange } = props;
+const Editor: FC<InputBaseProps> = (props) => {
   const styles = useStyles();
+  const [focused, setFocused] = useState(false);
   return (
     <InputBase
-      value={value}
-      onChange={onChange}
-      className={styles.textarea}
+      className={clsx(styles.textarea, focused && styles.focused)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       multiline
       fullWidth
-      placeholder="Enter something..."
+      placeholder="Your input here..."
+      {...props}
     />
   );
 };
