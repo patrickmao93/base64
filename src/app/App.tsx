@@ -10,6 +10,7 @@ import UpdateNotification from "../features/update/UpdateNotification";
 import { RootState } from "./rootReducer";
 import { persistor } from "./store";
 import createTheme from "./theme";
+import Transcoder from "../features/transcoder/Transcoder";
 
 const selectDarkMode = (state: RootState) => state.theme.darkMode;
 const selectUpdateAvailable = (state: RootState) => state.update.updateAvailable;
@@ -38,7 +39,7 @@ const App = () => {
         <NoScript />
         {updateAvailable && <UpdateNotification />}
         <PersistGate loading={null} persistor={persistor}>
-          <div></div>
+          <Transcoder />
         </PersistGate>
       </Container>
       <Notifications />
