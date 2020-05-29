@@ -25,17 +25,6 @@ module.exports = {
   devServer: {
     open: false,
   },
-
-  eslint: {
-    configure: {
-      settings: {
-        react: {
-          version: "16.12",
-        },
-      },
-    },
-  },
-
   jest: {
     configure: {
       moduleNameMapper: {

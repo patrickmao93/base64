@@ -1,12 +1,11 @@
 import { AppBar, Container, IconButton, makeStyles, Toolbar, Tooltip, Typography } from "@material-ui/core";
-import { blue } from "@material-ui/core/colors";
 import React from "react";
 import ThemeToggle from "../features/theme/ThemeToggle";
 import { GitHubIcon } from "./Icons";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: theme.palette.type === "light" ? blue[700] : blue[900],
+    boxShadow: "none",
   },
   title: {
     flexGrow: 1,
@@ -16,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   return (
-    <AppBar className={classes.appBar} position="sticky">
-      <Container maxWidth="md">
+    <AppBar className={classes.appBar} color="transparent" position="sticky">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography className={classes.title} variant="h6" noWrap>
-            GHFresh
+            base64 encode/decode
           </Typography>
           <ThemeToggle />
           <Tooltip title="GitHub">
