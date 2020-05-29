@@ -11,6 +11,8 @@ const rootReducer = combineReducers({
   online: onlineReducer,
 });
 
+export type RootReducer = typeof rootReducer;
+
 export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

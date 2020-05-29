@@ -4,11 +4,11 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import { updateOnlineStatus } from "./features/onlineStatus/onlineSlice";
 import { setUpdateAvailable } from "./features/update/updateSlice";
-import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 
 function start() {
   const rootElement = document.getElementById("root");
+  const App = require("./app/App").default;
 
   const Element = () => (
     <Provider store={store}>
