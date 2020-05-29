@@ -1,25 +1,44 @@
-import { AppBar, Container, IconButton, makeStyles, Toolbar, Tooltip, Typography } from "@material-ui/core";
+import { AppBar, Container, IconButton, makeStyles, Toolbar, Tooltip, Typography, useTheme } from "@material-ui/core";
 import React from "react";
 import ThemeToggle from "../features/theme/ThemeToggle";
 import { GitHubIcon } from "./Icons";
 
+export const headerHeight = {
+  xs: 64,
+  sm: 86,
+};
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     boxShadow: "none",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    [theme.breakpoints.up("xs")]: {
+      height: headerHeight.xs,
+    },
+    [theme.breakpoints.up("sm")]: {
+      height: headerHeight.sm,
+    },
   },
+
   title: {
     flexGrow: 1,
   },
 }));
 
 const Header = () => {
-  const classes = useStyles();
+  const styles = useStyles();
+  const theme = useTheme();
   return (
-    <AppBar className={classes.appBar} color="transparent" position="sticky">
+    <AppBar className={styles.appBar} color="transparent" position="static">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <Typography className={classes.title} variant="h6" noWrap>
-            base64 encode/decode
+          <Typography className={styles.title} variant="h6" noWrap display="inline">
+            base64{" "}
+            <Typography className={styles.title} variant="subtitle1" noWrap display="inline">
+              encode/decode
+            </Typography>
           </Typography>
           <ThemeToggle />
           <Tooltip title="GitHub">
