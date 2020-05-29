@@ -49,7 +49,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container maxWidth="lg" className={styles.wrapper}>
+      <Container maxWidth="xl" className={styles.wrapper}>
         <NoScript />
         {updateAvailable && <UpdateNotification />}
         <PersistGate loading={null} persistor={persistor}>

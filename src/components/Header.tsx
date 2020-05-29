@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const styles = useStyles();
-  const theme = useTheme();
+
   return (
     <AppBar className={styles.appBar} color="transparent" position="static">
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography className={styles.title} variant="h6" noWrap display="inline">
             base64{" "}
