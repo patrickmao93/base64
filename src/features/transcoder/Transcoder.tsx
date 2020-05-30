@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
-import { Paper, makeStyles, Grid, Tabs, Tab, colors, Box, fade } from "@material-ui/core";
+import { Paper, makeStyles, Grid, colors, Box, fade } from "@material-ui/core";
 import Editor from "../../components/Editor";
 import { RootState } from "../../app/rootReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -39,7 +39,9 @@ const useStyles = makeStyles((theme) => {
 
 const Transcoder: FC = () => {
   const styles = useStyles();
-  const { sourceContent, sourceEncoding, targetEncoding } = useSelector((state: RootState) => state.transcoder);
+  const { sourceContent, sourceEncoding, targetEncoding } = useSelector(
+    (state: RootState) => state.transcoder
+  );
   const dispatch = useDispatch();
 
   const changeSourceContent = (event: ChangeEvent<HTMLTextAreaElement>) => {

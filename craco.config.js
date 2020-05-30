@@ -4,7 +4,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 const bundleAnalyzer = when(
   process.env.REPORT === "true" && process.env.NODE_ENV === "production",
-  () => [new BundleAnalyzerPlugin()],
+  () => [new BundleAnalyzerPlugin({ analyzerHost: "localhost" })],
   []
 );
 

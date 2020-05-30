@@ -35,6 +35,9 @@
     "jest-fetch-mock": "^3.0.1",
     "preact-render-to-string": "^5.1.8",
     "react-scripts": "3.4.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0",
+    "tslint-react-hooks": "^2.2.2",
     "typescript": "~3.9.2",
     "webpack-bundle-analyzer": "^3.6.0"
   },
