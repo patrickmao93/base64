@@ -40,6 +40,11 @@ const transcoderSlice = createSlice({
         return { payload: content };
       },
     },
+    swapSourceTargetEncoding(state) {
+      const oldTargetEncoding = state.targetEncoding;
+      state.targetEncoding = state.sourceEncoding;
+      state.sourceEncoding = oldTargetEncoding;
+    },
   },
 });
 

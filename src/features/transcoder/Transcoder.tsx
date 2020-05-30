@@ -1,11 +1,12 @@
 import React, { FC, ChangeEvent } from "react";
-import { Paper, makeStyles, Grid, colors, Box, fade } from "@material-ui/core";
+import { Paper, makeStyles, Grid, colors, Box, fade, IconButton, Tooltip } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
 import Editor from "../../components/Editor";
 import { RootState } from "../../app/rootReducer";
-import { useSelector, useDispatch } from "react-redux";
 import { setSourceContent, setSourceEncoding, setTargetEncoding } from "./transcoderSlice";
 import EncodingOptions from "../../components/EncodingOptions";
 import { encodings } from "./encodings";
+import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 
 const useStyles = makeStyles((theme) => {
   const dividerBorder =
@@ -60,6 +61,11 @@ const Transcoder: FC = () => {
     <Paper className={styles.editorWrapper} elevation={4}>
       <Box className={styles.tabs}>
         <EncodingOptions tabs={encodings} selected={sourceEncoding} onChange={changeSourceEncoding} />
+        <Tooltip title="Swap Encodings" arrow>
+          <IconButton>
+            <SwapHorizIcon />
+          </IconButton>
+        </Tooltip>
         <EncodingOptions tabs={encodings} selected={targetEncoding} onChange={changeTargetEncoding} />
       </Box>
       <Grid container className={styles.container}>

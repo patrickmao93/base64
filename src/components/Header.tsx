@@ -1,4 +1,4 @@
-import { AppBar, Container, IconButton, makeStyles, Toolbar, Tooltip, Typography, useTheme } from "@material-ui/core";
+import { AppBar, Container, IconButton, makeStyles, Toolbar, Tooltip, Typography } from "@material-ui/core";
 import React from "react";
 import ThemeToggle from "../features/theme/ThemeToggle";
 import { GitHubIcon } from "./Icons";

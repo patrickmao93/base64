@@ -1,8 +1,8 @@
-import React, { FC, ChangeEventHandler, useState } from "react";
-import { makeStyles, InputBase, fade, colors, InputBaseProps } from "@material-ui/core";
+import React, { FC } from "react";
+import { makeStyles, InputBase, InputBaseProps } from "@material-ui/core";
 import clsx from "clsx";
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
   return {
     textarea: {
       height: "100%",

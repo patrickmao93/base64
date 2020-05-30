@@ -1199,6 +1199,13 @@
     react-is "^16.8.0"
     react-transition-group "^4.4.0"
 
+"@material-ui/icons@^4.9.1":
+  version "4.9.1"
+  resolved "https://registry.npm.taobao.org/@material-ui/icons/download/@material-ui/icons-4.9.1.tgz#fdeadf8cb3d89208945b33dbc50c7c616d0bd665"
+  integrity sha1-/erfjLPYkgiUWzPbxQx8YW0L1mU=
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+
 "@material-ui/lab@^4.0.0-alpha.53":
   version "4.0.0-alpha.53"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.53.tgz#8bb53f970861130413feec50a1d3202ec5c45f2c"
@@ -8558,9 +8565,9 @@ postcss@^7, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, po
     supports-color "^6.1.0"
 
 preact-render-to-string@^5.1.8:
-  version "5.1.8"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.8.tgz#5540f4c1b1fcf1e7c7dfb154d38053e717ca1fe4"
-  integrity sha512-9c2OFfOJ2Zi7ppMbHYC5lx1ebDFXpDGBMns9/YaKMgZGElUY90xTGmsKeNMqrNoDo7ImYPh715Ke6Ah/pdjW0g==
+  version "5.1.9"
+  resolved "https://registry.npm.taobao.org/preact-render-to-string/download/preact-render-to-string-5.1.9.tgz#201d7bb4c20899b68f5cbda705d36c45305f7efb"
+  integrity sha1-IB17tMIImbaPXL2nBdNsRTBffvs=
   dependencies:
     pretty-format "^3.8.0"
 
@@ -8634,7 +8641,7 @@ pretty-format@^26.0.1:
 
 pretty-format@^3.8.0:
   version "3.8.0"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
+  resolved "https://registry.npm.taobao.org/pretty-format/download/pretty-format-3.8.0.tgz?cache=0&sync_timestamp=1588675421672&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpretty-format%2Fdownload%2Fpretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
   integrity sha1-v77VbV6ad2ZF9LH/eqGjrE+jw4U=
 
 private@^0.1.8:
