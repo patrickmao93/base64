@@ -3,9 +3,14 @@ import { Paper, makeStyles, Grid, colors, Box, fade, IconButton, Tooltip } from 
 import { useSelector, useDispatch } from "react-redux";
 import Editor from "../../components/Editor";
 import { RootState } from "../../app/rootReducer";
-import { setSourceContent, setSourceEncoding, setTargetEncoding } from "./transcoderSlice";
+import {
+  setSourceContent,
+  setSourceEncoding,
+  setTargetEncoding,
+  toggleEncodeDecode,
+} from "./transcoderSlice";
 import EncodingOptions from "../../components/EncodingOptions";
-import { encodings } from "./encodings";
+import { textEncodings, base64Encodings } from "./encodings";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 
 const useStyles = makeStyles((theme) => {
@@ -17,9 +22,13 @@ const useStyles = makeStyles((theme) => {
     container: {
       minHeight: 450,
     },
-    tabs: {
+    tabsWrapper: {
       display: "flex",
       boxShadow: theme.shadows[1],
+    },
+    encodingOptions: {
+      minWidth: 300,
+      flexGrow: 1,
     },
     editorWrapper: {
       flexGrow: 1,
@@ -40,7 +49,7 @@ const useStyles = makeStyles((theme) => {
 
 const Transcoder: FC = () => {
   const styles = useStyles();
-  const { sourceContent, sourceEncoding, targetEncoding } = useSelector(
+  const { isEncoding, sourceContent, sourceEncoding, targetEncoding } = useSelector(
     (state: RootState) => state.transcoder
   );
   const dispatch = useDispatch();
@@ -49,24 +58,38 @@ const Transcoder: FC = () => {
     dispatch(setSourceContent(event.target.value));
   };
 
-  const changeSourceEncoding = (_: ChangeEvent<{}>, newValue: number) => {
+  const changeSourceEncoding = (_: ChangeEvent<{}>, newValue: string) => {
     dispatch(setSourceEncoding(newValue));
   };
 
-  const changeTargetEncoding = (_: ChangeEvent<{}>, newValue: number) => {
+  const changeTargetEncoding = (_: ChangeEvent<{}>, newValue: string) => {
     dispatch(setTargetEncoding(newValue));
+  };
+
+  const changeMode = () => {
+    dispatch(toggleEncodeDecode());
   };
 
   return (
     <Paper className={styles.editorWrapper} elevation={4}>
-      <Box className={styles.tabs}>
-        <EncodingOptions tabs={encodings} selected={sourceEncoding} onChange={changeSourceEncoding} />
-        <Tooltip title="Swap Encodings" arrow>
-          <IconButton>
+      <Box className={styles.tabsWrapper}>
+        <EncodingOptions
+          className={styles.encodingOptions}
+          tabs={isEncoding ? textEncodings : base64Encodings}
+          selected={sourceEncoding}
+          onChange={changeSourceEncoding}
+        />
+        <Tooltip title="Switch mode" arrow>
+          <IconButton onClick={changeMode}>
             <SwapHorizIcon />
           </IconButton>
         </Tooltip>
-        <EncodingOptions tabs={encodings} selected={targetEncoding} onChange={changeTargetEncoding} />
+        <EncodingOptions
+          className={styles.encodingOptions}
+          tabs={isEncoding ? base64Encodings : textEncodings}
+          selected={targetEncoding}
+          onChange={changeTargetEncoding}
+        />
       </Box>
       <Grid container className={styles.container}>
         <Grid item sm={6}>

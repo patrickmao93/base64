@@ -4,6 +4,7 @@ import { PaletteOptions } from "@material-ui/core/styles/createPalette";
 const createTheme = (darkTheme: boolean) => {
   const palette: PaletteOptions = {
     type: darkTheme ? "dark" : "light",
+    primary: colors.blue,
   };
   if (!darkTheme) {
     palette.background = {

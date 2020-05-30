@@ -21,6 +21,7 @@ const Editor: FC<InputBaseProps> = (props) => {
       multiline
       fullWidth
       placeholder="Your input here..."
+      spellCheck="false"
       {...props}
       className={clsx(styles.textarea, props.className)}
     />

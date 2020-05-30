@@ -1,17 +1,16 @@
 import React, { FC, ChangeEvent } from "react";
 import { Tabs, Tab, makeStyles } from "@material-ui/core";
+import clsx from "clsx";
 
 interface Props {
   tabs: string[];
   selected: string;
-  onChange: (event: ChangeEvent<{}>, newValue: number) => void;
+  className: string;
+  onChange: (event: ChangeEvent<{}>, newValue: string) => void;
 }
 
 const useStyles = makeStyles((theme) => {
   return {
-    wrapper: {
-      flexGrow: 1,
-    },
     tab: {
       minWidth: 100,
     },
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const EncodingOptions: FC<Props> = (props) => {
-  const { tabs, selected, onChange } = props;
+  const { tabs, selected, className, onChange } = props;
   const styles = useStyles();
 
   function a11yProps(index: any) {
@@ -30,7 +29,7 @@ const EncodingOptions: FC<Props> = (props) => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={className}>
       <Tabs value={selected} onChange={onChange} indicatorColor="primary">
         {tabs.map((tab) => (
           <Tab className={styles.tab} label={tab.toUpperCase()} {...a11yProps(tab)} value={tab} />
