@@ -16,12 +16,6 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.up("xs")]: {
-      height: `calc(100vh - ${headerHeight.xs}px)`,
-    },
-    [theme.breakpoints.up("sm")]: {
-      height: `calc(100vh - ${headerHeight.sm}px)`,
-    },
   },
 }));
 

@@ -1,38 +1,48 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-enum Encodings {
-  "utf-8",
-  "base64",
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TranscoderState {
   sourceContent: string;
-  sourceEncoding: Encodings;
-  targetEncoding: Encodings;
+  sourceEncoding: string;
+  targetEncoding: string;
 }
 
 const initialState: TranscoderState = {
   sourceContent: "",
-  sourceEncoding: Encodings["utf-8"],
-  targetEncoding: Encodings.base64,
+  sourceEncoding: "utf8",
+  targetEncoding: "base64",
 };
 
 const transcoderSlice = createSlice({
   name: "transcoder",
   initialState,
   reducers: {
-    setSourceContent(state, { payload }) {
-      state.sourceContent = payload.content;
+    setSourceContent: {
+      reducer(state, { payload }: PayloadAction<string>) {
+        state.sourceContent = payload;
+      },
+      prepare(content) {
+        return { payload: content };
+      },
     },
-    setSourceEncoding(state, { payload }) {
-      state.sourceEncoding = payload.encoding;
+    setSourceEncoding: {
+      reducer(state, { payload }: PayloadAction<string>) {
+        state.sourceEncoding = payload;
+      },
+      prepare(content) {
+        return { payload: content };
+      },
     },
-    setTargetEncoding(state, { payload }) {
-      state.targetEncoding = payload.encoding;
+    setTargetEncoding: {
+      reducer(state, { payload }: PayloadAction<string>) {
+        state.targetEncoding = payload;
+      },
+      prepare(content) {
+        return { payload: content };
+      },
     },
   },
 });
 
-export const { setSourceContent } = transcoderSlice.actions;
+export const { setSourceContent, setSourceEncoding, setTargetEncoding } = transcoderSlice.actions;
 
 export default transcoderSlice.reducer;
