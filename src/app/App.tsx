@@ -1,4 +1,4 @@
-import { Container, CssBaseline, ThemeProvider, responsiveFontSizes, colors } from "@material-ui/core";
+import { Container, CssBaseline, ThemeProvider, responsiveFontSizes } from "@material-ui/core";
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

@@ -23,7 +23,13 @@ const Result: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <Textarea className={styles.textarea} value={targetContent} placeholder="Result shows here" disabled />
+    <Textarea
+      className={styles.textarea}
+      value={targetContent}
+      placeholder="Result shows here"
+      disabled
+      onClickCopy
+    />
   );
 };
 

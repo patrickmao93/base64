@@ -30,7 +30,7 @@ const Transcoder: FC = () => {
 
   useEffect(() => {
     dispatch(transcode());
-  }, [isEncoding, sourceContent, sourceEncoding, targetEncoding]);
+  }, [isEncoding, sourceContent, sourceEncoding, targetEncoding, dispatch]);
 
   return (
     <Paper className={styles.wrapper} elevation={3}>
