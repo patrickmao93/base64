@@ -1,18 +1,27 @@
+import { AppThunk } from "../../app/store";
 import { Base64 } from "js-base64";
+import { setTargetContent } from "./transcoderSlice";
 
-// @param se Source Encoding
-// @param te Target Encoding
-// @param isEncoding Whether this transcoding is to base64 or not
-export const transcodeString = (se: string, te: string, isEncoding: boolean, str: string) => {
+const transcode = (): AppThunk => async (dispatch, getState) => {
+  const { transcoder } = getState();
+  const { isEncoding, sourceContent, targetEncoding } = transcoder;
+  let result;
   if (isEncoding) {
-    switch (te) {
-      case "base64url":
-        return Base64.encodeURI(str);
+    switch (targetEncoding) {
       case "base64":
-        return Base64.encode(str);
+        result = Base64.encode(sourceContent);
+        break;
+      case "base64url":
+        result = Base64.encodeURI(sourceContent);
+        break;
       default:
-        return null;
+        result = "Error";
+        break;
     }
+  } else {
+    result = Base64.decode(sourceContent);
   }
-  return Base64.decode(str);
+  dispatch(setTargetContent(result));
 };
+
+export default transcode;

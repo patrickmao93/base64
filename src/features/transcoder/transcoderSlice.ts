@@ -11,7 +11,7 @@ interface TranscoderState {
 const initialState: TranscoderState = {
   isEncoding: true,
   sourceContent: "",
-  targetContent: "123",
+  targetContent: "",
   sourceEncoding: "utf8",
   targetEncoding: "base64",
 };
@@ -30,7 +30,7 @@ const transcoderSlice = createSlice({
     },
     setTargetContent: {
       reducer(state, { payload }: PayloadAction<string>) {
-        state.sourceContent = payload;
+        state.targetContent = payload;
       },
       prepare(content) {
         return { payload: content };

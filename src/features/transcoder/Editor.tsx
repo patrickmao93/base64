@@ -1,9 +1,12 @@
 import React, { FC, ChangeEvent } from "react";
-import { setSourceContent } from "./transcoderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/rootReducer";
-import Textarea from "../../components/Textarea";
+import { useDebouncedCallback } from "use-debounce";
 import { makeStyles } from "@material-ui/core";
+
+import { setSourceContent } from "./transcoderSlice";
+import Textarea from "../../components/Textarea";
+import transcode from "./transcode";
 
 const useStyles = makeStyles(() => {
   return {
@@ -18,8 +21,13 @@ const Editor: FC = () => {
   const dispatch = useDispatch();
   const { sourceContent } = useSelector((state: RootState) => state.transcoder);
 
+  const [handleTrancode] = useDebouncedCallback(() => {
+    dispatch(transcode());
+  }, 100);
+
   const changeSourceContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setSourceContent(event.target.value));
+    handleTrancode();
   };
 
   return (
