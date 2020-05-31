@@ -1,6 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
 import { Tabs, Tab, makeStyles } from "@material-ui/core";
-import clsx from "clsx";
 
 interface Props {
   tabs: string[];

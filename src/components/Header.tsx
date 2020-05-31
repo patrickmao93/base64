@@ -28,14 +28,16 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    background: theme.palette.background.default,
     [theme.breakpoints.up("xs")]: {
       height: headerHeight.xs,
     },
     [theme.breakpoints.up("sm")]: {
       height: headerHeight.sm,
     },
+    color: theme.palette.text.primary,
   },
-  title: {
+  left: {
     flexGrow: 1,
   },
   link: {
@@ -47,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
     transition: "0.2s ease",
   },
   active: {
-    color: theme.palette.getContrastText(theme.palette.background.default),
+    color: theme.palette.text.primary,
     pointerEvents: "none",
     textDecoration: "none",
-    border: `1px solid ${theme.palette.getContrastText(theme.palette.background.default)}`,
+    border: `1px solid ${theme.palette.text.primary}`,
     borderRadius: 2,
   },
 }));
@@ -61,10 +63,10 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <AppBar className={styles.appBar} color="transparent" position="static">
+    <AppBar className={styles.appBar} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box className={styles.title}>
+          <Box className={styles.left}>
             <Typography variant="h6" noWrap display="inline">
               base64{" "}
             </Typography>
