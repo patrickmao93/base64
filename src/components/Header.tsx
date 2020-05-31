@@ -92,7 +92,7 @@ const Header = () => {
               color="inherit"
               edge="end"
               component="a"
-              href="https://github.com/code2k/ghfresh"
+              href="https://github.com/patrickmao93/base64"
               target="__blank"
               rel="noopener"
               aria-label="github"
