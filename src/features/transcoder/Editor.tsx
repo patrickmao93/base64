@@ -1,23 +1,13 @@
-import React, { FC, ChangeEvent } from "react";
+import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { useDebouncedCallback } from "use-debounce";
-import { makeStyles } from "@material-ui/core";
 
 import { setSourceContent } from "./transcoderSlice";
 import Textarea from "../../components/Textarea";
 import transcode from "./transcode";
 
-const useStyles = makeStyles(() => {
-  return {
-    textarea: {
-      borderBottomLeftRadius: 4,
-    },
-  };
-});
-
 const Editor: FC = () => {
-  const styles = useStyles();
   const dispatch = useDispatch();
   const { sourceContent } = useSelector((state: RootState) => state.transcoder);
 
@@ -30,12 +20,16 @@ const Editor: FC = () => {
     handleTrancode();
   };
 
+  const handleClearClick = () => {
+    dispatch(setSourceContent(""));
+  };
+
   return (
     <Textarea
       value={sourceContent}
       onChange={changeSourceContent}
+      onClear={handleClearClick}
       placeholder="Your input here..."
-      className={styles.textarea}
       autoFocus
     />
   );
