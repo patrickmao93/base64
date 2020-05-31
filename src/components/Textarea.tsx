@@ -1,15 +1,12 @@
-import React, { FC, ChangeEvent, useRef, useState, useMemo, useCallback } from "react";
-import { makeStyles, InputBase, Tooltip } from "@material-ui/core";
+import React, { FC, useRef, useState, useMemo, useCallback, useEffect, ChangeEvent } from "react";
+import { makeStyles, InputBase, Tooltip, InputBaseProps } from "@material-ui/core";
 import clsx from "clsx";
+import { insertAtCursor } from "../utils/dom";
 
-interface Props {
-  className?: string;
-  autoFocus?: boolean;
-  disabled?: boolean;
-  placeholder?: string;
+interface Props extends Omit<InputBaseProps, "onChange"> {
+  value: string;
+  onChange?: (value: string) => void;
   onClickCopy?: boolean;
-  value?: string;
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const useStyles = makeStyles(() => {
@@ -22,11 +19,25 @@ const useStyles = makeStyles(() => {
   };
 });
 
+const TAB_CHAR = "  ";
+
 const Textarea: FC<Props> = (props) => {
-  const { value, onChange, placeholder, autoFocus = false, disabled = false, onClickCopy = false } = props;
+  const { className, value, onChange = () => {}, onClickCopy = false, ...restProps } = props;
   const styles = useStyles();
   const inputRef = useRef<HTMLTextAreaElement>();
   const [copied, setCopied] = useState(false);
+
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(event.target.value);
+  };
+
+  const keyEventListener = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // TAB key pressed
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      insertAtCursor(TAB_CHAR, inputRef.current);
+    }
+  };
 
   const copyInputContent = useCallback(() => {
     if (!inputRef?.current) {
@@ -41,36 +52,36 @@ const Textarea: FC<Props> = (props) => {
       document.execCommand("copy");
       setCopied(true);
     }
-  }, [inputRef]);
+  }, []);
 
   const handleTooltipClose = () => {
-    setTimeout(() => setCopied(false), 100);
+    setTimeout(() => setCopied(false), 200);
   };
 
   const onClickCopyProps = useMemo(() => {
     if (onClickCopy && value) {
-      return { onClick: copyInputContent, inputRef };
+      return { onClick: copyInputContent };
     }
     return {};
-  }, [onClickCopy, value, copyInputContent, inputRef]);
+  }, [onClickCopy, value, copyInputContent]);
 
   const input = (
     <InputBase
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
+      inputRef={inputRef}
       className={clsx(styles.textarea, props.className)}
-      autoFocus={autoFocus}
-      disabled={disabled}
-      placeholder={placeholder}
       spellCheck="false"
+      onKeyDown={keyEventListener}
       multiline
       fullWidth
       {...onClickCopyProps}
+      {...restProps}
     />
   );
 
   return onClickCopy && value ? (
-    <Tooltip title={copied ? "Copied!" : "Click to Copy"} onClose={handleTooltipClose}>
+    <Tooltip title={copied ? "Copied!" : "Click to Copy"} onClose={handleTooltipClose} arrow>
       {input}
     </Tooltip>
   ) : (

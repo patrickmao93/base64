@@ -25,8 +25,8 @@ const Editor: FC = () => {
     dispatch(transcode());
   }, 100);
 
-  const changeSourceContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setSourceContent(event.target.value));
+  const changeSourceContent = (value: string) => {
+    dispatch(setSourceContent(value));
     handleTrancode();
   };
 
