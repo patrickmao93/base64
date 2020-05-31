@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { useDebouncedCallback } from "use-debounce";
@@ -20,9 +20,9 @@ const Editor: FC = () => {
     handleTrancode();
   };
 
-  const handleClearClick = () => {
+  const handleClearClick = useCallback(() => {
     dispatch(setSourceContent(""));
-  };
+  }, [dispatch]);
 
   return (
     <Textarea

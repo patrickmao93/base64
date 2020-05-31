@@ -21,16 +21,16 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
+const selectTranscoder = (state: RootState) => state.transcoder;
+
 const Transcoder: FC = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
-  const { isEncoding, sourceContent, sourceEncoding, targetEncoding } = useSelector(
-    (state: RootState) => state.transcoder
-  );
+  const { isEncoding, sourceEncoding, targetEncoding } = useSelector(selectTranscoder);
 
   useEffect(() => {
     dispatch(transcode());
-  }, [isEncoding, sourceContent, sourceEncoding, targetEncoding, dispatch]);
+  }, [isEncoding, sourceEncoding, targetEncoding, dispatch]);
 
   return (
     <Paper className={styles.wrapper} elevation={3}>
