@@ -105,16 +105,23 @@ const Textarea: FC<Props> = (props) => {
   return (
     <Box className={styles.box}>
       {onClickCopy && value ? (
-        <Tooltip title={copied ? "Copied!" : "Click to Copy"} onClose={handleTooltipClose} arrow>
+        <Tooltip
+          title={copied ? "Copied!" : "Click to Copy"}
+          onClose={handleTooltipClose}
+          arrow
+          placement="top"
+        >
           {input}
         </Tooltip>
       ) : (
         input
       )}
       {focused && onClear ? (
-        <span className={styles.clearButton} onMouseDown={onClear}>
-          <CloseIcon />
-        </span>
+        <Tooltip title="Clear input" enterDelay={500} arrow placement="top">
+          <span className={styles.clearButton} onMouseDown={onClear}>
+            <CloseIcon />
+          </span>
+        </Tooltip>
       ) : null}
     </Box>
   );

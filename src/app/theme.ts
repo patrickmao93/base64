@@ -1,4 +1,5 @@
 import { colors, createMuiTheme } from "@material-ui/core";
+import { Overrides } from "@material-ui/core/styles/overrides";
 
 const breakpoints = {
   values: {
@@ -14,6 +15,19 @@ const typography = {
   fontFamily: "SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace",
 };
 
+const overrides: Overrides = {
+  MuiTooltip: {
+    arrow: {
+      color: colors.common.black,
+    },
+    tooltip: {
+      fontSize: "0.7rem",
+      backgroundColor: colors.common.black,
+      fontWeight: "bold",
+    },
+  },
+};
+
 const lightTheme = createMuiTheme({
   palette: {
     type: "light",
@@ -25,6 +39,7 @@ const lightTheme = createMuiTheme({
   },
   typography,
   breakpoints,
+  overrides,
 });
 
 const darkTheme = createMuiTheme({
@@ -38,6 +53,7 @@ const darkTheme = createMuiTheme({
   },
   typography,
   breakpoints,
+  overrides,
 });
 
 const createTheme = (darkMode: boolean) => {
