@@ -21,11 +21,10 @@ const useStyles = makeStyles((theme) => {
     textarea: {
       alignItems: "flex-start",
       height: "100%",
-      padding: "2rem",
     },
     clearButton: {
       position: "absolute",
-      top: "2rem",
+      top: "1.8rem",
       right: "2rem",
       color: fade(theme.palette.text.primary, 0.5),
     },
@@ -73,9 +72,9 @@ const Textarea: FC<Props> = (props) => {
     }
   }, []);
 
-  const handleTooltipClose = () => {
+  const handleTooltipClose = useCallback(() => {
     setTimeout(() => setCopied(false), 200);
-  };
+  }, []);
 
   const onClickCopyProps = useMemo(() => {
     if (onClickCopy && value) {
@@ -89,6 +88,7 @@ const Textarea: FC<Props> = (props) => {
       value={value}
       onChange={handleChange}
       inputRef={inputRef}
+      inputProps={{ style: { padding: "1.5rem 2rem" }, rowsMin: 10 }}
       className={clsx(styles.textarea, props.className)}
       spellCheck="false"
       onKeyDown={keyEventListener}

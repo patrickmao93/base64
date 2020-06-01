@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => {
       : darken(theme.palette.background.default, 0.01);
   return {
     textarea: {
-      borderBottomRightRadius: 4,
       background,
     },
   };
@@ -27,6 +26,7 @@ const Result: FC = () => {
       className={styles.textarea}
       value={targetContent}
       placeholder="Result shows here"
+      rowsMin={10}
       disabled
       onClickCopy
     />

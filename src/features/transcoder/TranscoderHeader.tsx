@@ -10,10 +10,14 @@ import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 const useStyles = makeStyles((theme) => {
   return {
     wrapper: {
+      marginTop: 6,
       display: "flex",
       position: "relative",
       zIndex: 1,
-      boxShadow: theme.shadows[1],
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+      borderTop: "1px solid rgba(0,0,0,0.12)",
+      borderBottom: "1px solid rgba(0,0,0,0.12)",
     },
     encodingOptions: {
       minWidth: 300,
