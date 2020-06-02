@@ -29,7 +29,12 @@ const EncodingOptions: FC<Props> = (props) => {
 
   return (
     <div className={className}>
-      <Tabs value={selected} onChange={onChange} indicatorColor="primary">
+      <Tabs
+        value={selected}
+        onChange={onChange}
+        indicatorColor="primary"
+        TabIndicatorProps={{ style: { height: 3 } }}
+      >
         {tabs.map((tab) => (
           <Tab className={styles.tab} label={tab.toUpperCase()} {...a11yProps(tab)} value={tab} />
         ))}

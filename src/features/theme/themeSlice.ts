@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Theme } from "@material-ui/core";
 
 interface ThemeState {
   darkMode: boolean;
@@ -19,5 +20,9 @@ const themeSlice = createSlice({
 });
 
 export const { toggleTheme } = themeSlice.actions;
+
+export const ifDarkModeElse = (theme: Theme, darkStuff: any, lightStuff: any) => {
+  return theme.palette.type === "dark" ? darkStuff : lightStuff;
+};
 
 export default themeSlice.reducer;

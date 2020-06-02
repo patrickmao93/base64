@@ -1,13 +1,23 @@
 import React, { FC, ChangeEvent } from "react";
-import { Box, Tooltip, IconButton, makeStyles } from "@material-ui/core";
+import { Box, Tooltip, IconButton, makeStyles, fade } from "@material-ui/core";
 import EncodingOptions from "../../components/EncodingOptions";
 import { textEncodings, base64Encodings } from "./encodings";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import { setSourceEncoding, setTargetEncoding, toggleEncodeDecode } from "./transcoderSlice";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
+import { ifDarkModeElse } from "../theme/themeSlice";
+
+const makeSolidBorder = (color: string) => {
+  return `1px solid ${color}`;
+};
 
 const useStyles = makeStyles((theme) => {
+  const borderTopLight = makeSolidBorder(fade(theme.palette.common.black, 0.12));
+  const borderTopDark = makeSolidBorder(fade(theme.palette.common.white, 0.06));
+  const borderBottomDark = makeSolidBorder(fade(theme.palette.common.white, 0.14));
+  const borderTop = ifDarkModeElse(theme, borderTopDark, borderTopLight);
+  const borderBottom = ifDarkModeElse(theme, borderBottomDark, borderTopLight);
   return {
     wrapper: {
       marginTop: 6,
@@ -16,8 +26,8 @@ const useStyles = makeStyles((theme) => {
       zIndex: 1,
       borderTopLeftRadius: 8,
       borderTopRightRadius: 8,
-      borderTop: "1px solid rgba(0,0,0,0.12)",
-      borderBottom: "1px solid rgba(0,0,0,0.12)",
+      borderTop,
+      borderBottom,
     },
     encodingOptions: {
       minWidth: 300,

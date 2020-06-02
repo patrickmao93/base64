@@ -14,13 +14,13 @@ interface Props extends Omit<InputBaseProps, "onChange"> {
 const useStyles = makeStyles((theme) => {
   return {
     box: {
-      borderBottomLeftRadius: 4,
       height: "100%",
       position: "relative",
     },
     textarea: {
       alignItems: "flex-start",
       height: "100%",
+      color: `${theme.palette.text.primary} !important`,
     },
     clearButton: {
       position: "absolute",

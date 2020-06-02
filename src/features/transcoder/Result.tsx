@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { makeStyles, darken } from "@material-ui/core";
+import { makeStyles, darken, Box } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../app/rootReducer";
 import Textarea from "../../components/Textarea";
@@ -10,8 +10,10 @@ const useStyles = makeStyles((theme) => {
       ? darken(theme.palette.background.paper, 0.1)
       : darken(theme.palette.background.default, 0.01);
   return {
+    wrapper: {},
     textarea: {
       background,
+      borderBottomRightRadius: 8,
     },
   };
 });
@@ -22,14 +24,16 @@ const Result: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <Textarea
-      className={styles.textarea}
-      value={targetContent}
-      placeholder="Result shows here"
-      rowsMin={10}
-      disabled
-      onClickCopy
-    />
+    <Box className={styles.wrapper}>
+      <Textarea
+        className={styles.textarea}
+        value={targetContent}
+        placeholder="Result shows here"
+        rowsMin={10}
+        disabled
+        onClickCopy
+      />
+    </Box>
   );
 };
 
